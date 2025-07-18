@@ -10,8 +10,8 @@
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@<version>/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@<version>/examples/jsm/"
+          "three": "https://cdn.jsdelivr.net/npm/three@0.129.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.129.0/examples/jsm/"
         }
       }
       </script>
@@ -52,7 +52,7 @@
   <div id="vr-model-container"></div>
 
   <!-- HERO SECTION -->
-  <div class="section" id="home" style="background-image: url('img/3d-background.jpg'); background-size: cover; background-position: center;">
+  <div class="section" id="home">
     <div class="content-fit">
       <h1 class="title">Visualize before you build!</h1>
       <p class="quote">Step into Your Future Home with Confidence</p>
@@ -69,27 +69,67 @@
 <div class="section" id="designs">
   <div class="content-fit">
     <h2 class="title">Explore Our Designs</h2>
-    <div class="design-category">
-      <div>
-        <h3><i class="fas fa-couch"></i> Interior Design</h3>
-        <img src="interior.PNG" alt="Interior Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
-        <p>
-          Bring your spaces to life with immersive interior design experiences. From furniture placement to lighting and color schemes, visualize every element and make confident design choices before implementation.
-        </p>
+    <div class="design-container">
+      <div class="design-slider">
+        <div class="design-slide">
+          <div class="design-card">
+            <h3><i class="fas fa-couch"></i> Interior Design</h3>
+            <img src="interior.PNG" alt="Interior Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
+            <p>
+              Bring your spaces to life with immersive interior design experiences. From furniture placement to lighting and color schemes, visualize every element and make confident design choices before implementation.
+            </p>
+          </div>
+        </div>
+        
+        <div class="design-slide">
+          <div class="design-card">
+            <h3><i class="fas fa-home"></i> Exterior Design</h3>
+            <img src="ext.PNG" alt="Exterior Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
+            <p>
+              Experience the exterior of your dream home like never before. Walk around your virtual facade, explore architectural styles, textures, and landscaping — all tailored to your vision.
+            </p>
+          </div>
+        </div>
+        
+        <div class="design-slide">
+          <div class="design-card">
+            <h3><i class="fas fa-utensils"></i> Home & Kitchen Design</h3>
+            <img src="kitchen.PNG" alt="Home & Kitchen Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
+            <p>
+              Redefine functionality and aesthetics with smart home and kitchen layouts. Experiment with modern fittings, space planning, and design elements in real-time, ensuring a perfect blend of style and practicality.
+            </p>
+          </div>
+        </div>
+        
+        <div class="design-slide">
+          <div class="design-card">
+            <h3><i class="fas fa-gamepad"></i> FPS Shooting Game</h3>
+            <img src="shooting game.png" alt="FPS Shooting Game" style="width:100%; max-width:300px; display:block; margin:0 auto;">
+            <p>
+              Immerse yourself in high-octane virtual reality shooting experiences. Our FPS games feature realistic environments, responsive controls, and heart-pounding action that puts you right in the middle of the action.
+            </p>
+          </div>
+        </div>
+        
+        <div class="design-slide">
+          <div class="design-card">
+            <h3><i class="fas fa-door-closed"></i> Escape Room</h3>
+            <img src="escape.jpeg" alt="Escape Room" style="width:100%; max-width:300px; display:block; margin:0 auto;">
+            <p>
+              Challenge your mind with our immersive VR escape rooms. Solve intricate puzzles, uncover hidden clues, and work against the clock in meticulously designed virtual environments that test your problem-solving skills.
+            </p>
+          </div>
+        </div>
       </div>
-      <div>
-        <h3><i class="fas fa-home"></i> Exterior Design</h3>
-        <img src="ext.jpg" alt="Exterior Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
-        <p>
-          Experience the exterior of your dream home like never before. Walk around your virtual facade, explore architectural styles, textures, and landscaping — all tailored to your vision.
-        </p>
-      </div>
-      <div>
-        <h3><i class="fas fa-utensils"></i> Home & Kitchen Design</h3>
-        <img src="kitchen.PNG" alt="Home & Kitchen Design" style="width:100%; max-width:300px; display:block; margin:0 auto;">
-        <p>
-          Redefine functionality and aesthetics with smart home and kitchen layouts. Experiment with modern fittings, space planning, and design elements in real-time, ensuring a perfect blend of style and practicality.
-        </p>
+      
+      <div class="design-controls">
+        <button class="prev-btn" onclick="moveDesignSlide(-1)">❮</button>
+        <div class="design-dots">
+          <span class="dot active" onclick="currentDesignSlide(0)"></span>
+          <span class="dot" onclick="currentDesignSlide(1)"></span>
+          <span class="dot" onclick="currentDesignSlide(2)"></span>
+        </div>
+        <button class="next-btn" onclick="moveDesignSlide(1)">❯</button>
       </div>
     </div>
   </div>
@@ -253,7 +293,7 @@
           <a href="https://www.linkedin.com/company/viruzverse-solutions/posts/?feedView=all" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
-    </div>a
+    </div>
     <div class="footer-bottom">
       &copy; 2025 Viruzverse. All Rights Reserved.
     </div>
@@ -291,7 +331,8 @@
       closeDemoForm();
     });
     
-    // Testimonial slider functions
+    // Slider functions
+    // Testimonial slider
     let currentSlideIndex = 0;
     function moveSlide(n) {
       showSlide(currentSlideIndex += n);
@@ -301,7 +342,7 @@
     }
     function showSlide(n) {
       const slides = document.querySelectorAll('.testimonial-slide');
-      const dots = document.querySelectorAll('.dot');
+      const dots = document.querySelectorAll('.testimonial-dots .dot');
       
       if (n > dots.length - 1) currentSlideIndex = 0;
       if (n < 0) currentSlideIndex = dots.length - 1;
@@ -319,15 +360,70 @@
         }
       });
     }
-    let slideInterval = setInterval(() => moveSlide(1), 5000);
+    
+    // Design slider
+    let currentDesignSlideIndex = 0;
+    function moveDesignSlide(n) {
+      showDesignSlide(currentDesignSlideIndex += n);
+    }
+    function currentDesignSlide(n) {
+      showDesignSlide(currentDesignSlideIndex = n);
+    }
+    function showDesignSlide(n) {
+      const slides = document.querySelectorAll('.design-slide');
+      const dots = document.querySelectorAll('.design-dots .dot');
+      const totalSlides = slides.length;
+      const slidesPerView = window.innerWidth > 768 ? 2 : 1;
+      const totalGroups = Math.ceil(totalSlides / slidesPerView);
+      
+      // Ensure index is within bounds
+      if (n >= totalGroups) currentDesignSlideIndex = 0;
+      if (n < 0) currentDesignSlideIndex = totalGroups - 1;
+      
+      // Calculate the transform percentage based on screen size
+      let transformPercentage;
+      if (window.innerWidth > 768) {
+        // On desktop: move 2 slides at a time (50% = 2 slides)
+        transformPercentage = currentDesignSlideIndex * 50;
+      } else {
+        // On mobile: move 1 slide at a time
+        transformPercentage = currentDesignSlideIndex * 100;
+      }
+      
+      document.querySelector('.design-slider').style.transform = `translateX(-${transformPercentage}%)`;
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.remove('active');
+        if (index === currentDesignSlideIndex) {
+          dot.classList.add('active');
+        }
+      });
+    }
+    
+    // Auto-slide intervals
+    let testimonialInterval = setInterval(() => moveSlide(1), 5000);
+    let designInterval = setInterval(() => moveDesignSlide(1), 7000);
+    
+    // Pause on hover
     document.querySelector('.testimonial-container').addEventListener('mouseenter', () => {
-      clearInterval(slideInterval);
+      clearInterval(testimonialInterval);
     });
     document.querySelector('.testimonial-container').addEventListener('mouseleave', () => {
-      slideInterval = setInterval(() => moveSlide(1), 5000);
+      testimonialInterval = setInterval(() => moveSlide(1), 5000);
     });
+    
+    document.querySelector('.design-container').addEventListener('mouseenter', () => {
+      clearInterval(designInterval);
+    });
+    document.querySelector('.design-container').addEventListener('mouseleave', () => {
+      designInterval = setInterval(() => moveDesignSlide(1), 6000);
+    });
+    
+    // Initialize sliders on page load
     document.addEventListener("DOMContentLoaded", function() {
       showSlide(currentSlideIndex);
+      showDesignSlide(currentDesignSlideIndex);
     });
   </script>
   
